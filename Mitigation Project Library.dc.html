@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#0D1B2A">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0D1B2A"/>
+    <rect x="360" y="150" width="480" height="90" rx="12" fill="#1C847F"/>
+    <rect x="360" y="290" width="480" height="60" rx="10" fill="#2B3A4F"/>
+    <rect x="360" y="380" width="480" height="60" rx="10" fill="#2B3A4F"/>
+    <rect x="360" y="470" width="480" height="60" rx="10" fill="#2B3A4F"/>
+    <rect x="700" y="595" width="140" height="55" rx="10" fill="#1C847F"/>
+  </svg>
+</template>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+  .pl-root {
+    --fu: 'Archivo', system-ui, sans-serif;
+    --fb: 'Source Sans 3', system-ui, sans-serif;
+    --primary: #0D1B2A; --primary-h: #1B2E44; --on-primary: #FFFFFF; --charcoal: #2B3A4F;
+    --bg: #EAECEF; --surface: #FFFFFF; --surface-m: #F5F6F8; --text: #0D1B2A; --muted: #2B3A4F;
+    --border: #D7DBE0; --border-s: #2B3A4F;
+    --pos: #1C847F; --pos-s: #12615D; --pos-c: #E4F2F1; --on-pos-c: #12615D;
+    --warn: #F39E21; --warn-s: #8A5A0B; --warn-c: #FDF1DE; --on-warn-c: #8A5A0B;
+    --crit: #D95652; --crit-s: #B23A36; --crit-c: #FBEAEA; --on-crit-c: #B23A36;
+    --info: #52A6D2; --info-s: #2A6E93; --info-c: #E4F1F8; --on-info-c: #2A6E93;
+    --r-sm: 4px; --r: 8px; --r-lg: 12px; --r-xl: 16px; --r-full: 9999px;
+    --sh-card: 0 1px 2px rgba(13,27,42,0.06), 0 2px 8px rgba(13,27,42,0.04);
+    --sh-over: 0 12px 36px rgba(13,27,42,0.20);
+    --grid: minmax(230px,1fr) 132px 116px 126px 78px 82px;
+  }
+  .pl-root, .pl-root * { box-sizing: border-box; }
+  @keyframes pl-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes pl-slide { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+  .pl-scroll::-webkit-scrollbar { width: 10px; height: 10px; }
+  .pl-scroll::-webkit-scrollbar-thumb { background: #cbd0d6; border-radius: 9999px; border: 2px solid transparent; background-clip: padding-box; }
+</style>
+</helmet>
+
+<div class="pl-root" style="font-family:var(--fb);background:var(--bg);color:var(--text);display:grid;grid-template-columns:248px 1fr;grid-template-rows:56px 1fr;grid-template-areas:'brand topbar' 'nav main';height:100vh;overflow:hidden">
+
+  <div style="grid-area:brand;background:var(--primary);color:#fff;display:flex;align-items:center;gap:10px;padding:0 24px;font-family:var(--fu)">
+    <span style="width:28px;height:28px;border-radius:7px;background:var(--pos);display:grid;place-items:center">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"></path><path d="m9 12 2 2 4-4"></path></svg>
+    </span>
+    <span style="font-weight:800;font-size:17px;letter-spacing:-0.03em">Cloud<span style="color:#7FC0E3">Cover</span></span>
+  </div>
+
+  <header style="grid-area:topbar;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px">
+    <div style="font-family:var(--fu);font-weight:500;font-size:14px;color:var(--muted)">Portfolio <span style="opacity:.5">/</span> <b style="color:var(--text);font-weight:700">Mitigation Project Library</b></div>
+    <div style="display:flex;align-items:center;gap:16px">
+      <span style="font-family:var(--fu);font-size:13px;font-weight:500;color:var(--muted)">FY2026 · 5-year horizon</span>
+      <span style="width:32px;height:32px;border-radius:50%;background:var(--primary);color:#fff;font-family:var(--fu);font-weight:700;font-size:13px;display:grid;place-items:center">RC</span>
+    </div>
+  </header>
+
+  <nav class="pl-scroll" style="grid-area:nav;background:var(--primary);color:#cfd6de;padding:16px 12px;overflow-y:auto">
+    <a href="Mitigage Prototype.dc.html" style="display:flex;align-items:center;gap:10px;font-family:var(--fu);font-size:14px;font-weight:500;color:#cfd6de;text-decoration:none;padding:9px 8px;border-radius:var(--r)" style-hover="background:rgba(255,255,255,0.08);color:#fff"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M3 13h8V3H3zM13 21h8V3h-8zM3 21h8v-6H3z"></path></svg>Portfolio Overview</a>
+    <a href="Mitigage Prototype.dc.html" style="display:flex;align-items:center;gap:10px;font-family:var(--fu);font-size:14px;font-weight:500;color:#cfd6de;text-decoration:none;padding:9px 8px;border-radius:var(--r)" style-hover="background:rgba(255,255,255,0.08);color:#fff"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M4 21V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v17M15 9h4a1 1 0 0 1 1 1v11M8 7h3M8 11h3M8 15h3"></path></svg>Facilities</a>
+    <a style="display:flex;align-items:center;gap:10px;font-family:var(--fu);font-size:14px;font-weight:600;color:#fff;text-decoration:none;padding:9px 8px;border-radius:var(--r);background:var(--pos)"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M4 6h16M4 12h16M4 18h10M18 15v6M15 18h6"></path></svg>Project Library</a>
+    <div style="font-family:var(--fu);font-size:11px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:#6f8098;padding:20px 8px 4px">Reference</div>
+    <a href="Mitigage Design System.dc.html" style="display:flex;align-items:center;gap:10px;font-family:var(--fu);font-size:14px;font-weight:500;color:#cfd6de;text-decoration:none;padding:9px 8px;border-radius:var(--r)" style-hover="background:rgba(255,255,255,0.08);color:#fff"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M12 2 2 7l10 5 10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>Design system</a>
+  </nav>
+
+  <main class="pl-scroll" style="grid-area:main;overflow-y:auto;padding:28px 36px">
+    <sc-if value="{{ showLibrary }}" hint-placeholder-val="{{ true }}">
+    <section style="max-width:1280px;animation:pl-fade .2s ease-out">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
+        <div>
+          <h1 style="font-family:var(--fu);font-weight:800;font-size:28px;line-height:34px;margin:0 0 4px;letter-spacing:-0.03em">Mitigation Project Library</h1>
+          <p style="color:var(--muted);font-size:15px;margin:0 0 22px">Recommended resilience projects across your portfolio, ranked by financial impact.</p>
+        </div>
+        <button onClick="{{ goAdd }}" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);border:1px solid transparent;cursor:pointer;background:var(--primary);color:var(--on-primary);font-size:14px;padding:10px 16px;display:inline-flex;align-items:center;gap:6px;flex-shrink:0" style-hover="background:var(--primary-h)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg>New project</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px 20px">
+          <p style="font-family:var(--fu);font-weight:500;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);margin:0 0 8px">Total projected 5-yr savings</p>
+          <p style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:34px;margin:0;letter-spacing:-0.02em;color:var(--pos);font-variant-numeric:tabular-nums">{{ sumSavings }}</p>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px 20px">
+          <p style="font-family:var(--fu);font-weight:500;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);margin:0 0 8px">Total est. CapEx required</p>
+          <p style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:34px;margin:0;letter-spacing:-0.02em;font-variant-numeric:tabular-nums">{{ sumCapex }}</p>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px 20px">
+          <p style="font-family:var(--fu);font-weight:500;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);margin:0 0 8px">Avg. payback period</p>
+          <p style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:34px;margin:0;letter-spacing:-0.02em;font-variant-numeric:tabular-nums">{{ avgPayback }}</p>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px">
+        <sc-for list="{{ chips }}" as="c" hint-placeholder-count="7">
+          <button onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:18px">
+        <span style="font-family:var(--fu);font-size:13px;color:var(--muted)">{{ countLabel }}</span>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div style="position:relative">
+            <select value="{{ region }}" onChange="{{ onRegion }}" style="appearance:none;font-family:var(--fb);font-size:14px;padding:9px 34px 9px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);color:var(--text);cursor:pointer;min-width:190px" style-focus="border-color:var(--info);box-shadow:0 0 0 3px color-mix(in srgb, var(--info) 30%, transparent);outline:none">
+              <sc-for list="{{ regionOpts }}" as="o" hint-placeholder-count="5"><option>{{ o }}</option></sc-for>
+            </select>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--muted)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg>
+          </div>
+          <div style="position:relative">
+            <select value="{{ sortLabel }}" onChange="{{ onSort }}" style="appearance:none;font-family:var(--fb);font-size:14px;padding:9px 34px 9px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);color:var(--text);cursor:pointer;min-width:200px" style-focus="border-color:var(--info);box-shadow:0 0 0 3px color-mix(in srgb, var(--info) 30%, transparent);outline:none">
+              <option>Highest ROI</option><option>Lowest Cost</option><option>Fastest Payback</option><option>Highest Risk Reduction</option>
+            </select>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="var(--muted)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="M3 6h13M3 12h9M3 18h5M17 6v12M17 18l3-3M17 18l-3-3"></path></svg>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:var(--grid) 208px;gap:16px;padding:0 18px 8px;font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted)">
+        <span>Project</span>
+        <span>Category</span>
+        <span style="text-align:right">Est. cost</span>
+        <span style="text-align:right">5-yr savings</span>
+        <span style="text-align:right">Premium</span>
+        <span style="text-align:right">Payback</span>
+        <span style="text-align:right">Action</span>
+      </div>
+
+      <sc-for list="{{ rows }}" as="p" hint-placeholder-count="6">
+        <div onClick="{{ p.open }}" style="display:grid;grid-template-columns:var(--grid) 208px;gap:16px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 18px;margin-bottom:8px;cursor:pointer" style-hover="border-color:var(--border-s)">
+          <div style="min-width:0">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
+              <span style="font-family:var(--fu);font-weight:700;font-size:11px;color:var(--muted);min-width:16px">{{ p.rank }}</span>
+              <span style="font-family:var(--fu);font-weight:700;font-size:14px;line-height:18px">{{ p.name }}</span>
+            </div>
+            <div style="font-family:var(--fb);font-size:13px;color:var(--muted);margin-left:24px">{{ p.facility }} · {{ p.region }}</div>
+            <sc-if value="{{ p.hasStatus }}" hint-placeholder-val="{{ false }}"><div style="margin:5px 0 0 24px"><span style="font-family:var(--fu);font-weight:600;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;padding:3px 8px;border-radius:var(--r-full);background:{{ p.stBg }};color:{{ p.stOn }};white-space:nowrap">{{ p.status }}</span></div></sc-if>
+          </div>
+          <div><span style="font-family:var(--fu);font-weight:600;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 9px;border-radius:var(--r-full);background:{{ p.catBg }};color:{{ p.catOn }};white-space:nowrap">{{ p.category }}</span></div>
+          <div style="font-family:var(--fu);font-weight:500;font-size:13px;font-variant-numeric:tabular-nums;text-align:right">{{ p.costRange }}</div>
+          <div style="font-family:var(--fu);font-weight:800;font-size:15px;font-variant-numeric:tabular-nums;text-align:right;color:var(--pos)">{{ p.savings }}</div>
+          <div style="font-family:var(--fu);font-weight:600;font-size:13px;font-variant-numeric:tabular-nums;text-align:right">{{ p.premium }}</div>
+          <div style="font-family:var(--fu);font-weight:500;font-size:13px;font-variant-numeric:tabular-nums;text-align:right">{{ p.payback }}</div>
+          <div style="display:flex;flex-direction:column;gap:5px;align-items:stretch">
+            <button onClick="{{ p.approve }}" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);border:1px solid transparent;cursor:pointer;background:var(--pos);color:#fff;font-size:12px;padding:7px 10px;white-space:nowrap" style-hover="background:var(--pos-s)">Approve Project</button>
+            
+          </div>
+        </div>
+      </sc-for>
+
+      <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center;padding:60px 20px;color:var(--muted);font-family:var(--fb);font-size:15px">No projects match the current filters.</div>
+      </sc-if>
+    </section>
+    </sc-if>
+
+    <sc-if value="{{ showAdd }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:900px;animation:pl-fade .2s ease-out">
+      <button onClick="{{ goLibrary }}" style="font-family:var(--fu);font-weight:600;font-size:13px;background:none;border:none;cursor:pointer;color:var(--muted);padding:0;display:inline-flex;align-items:center;gap:6px;margin-bottom:14px" style-hover="color:var(--text)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Back to library</button>
+
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:6px">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-family:var(--fu);font-weight:600;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 9px;border-radius:var(--r-full);background:var(--surface-m);color:var(--charcoal)">New project</span>
+            <span style="font-family:var(--fu);font-weight:600;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 9px;border-radius:var(--r-full);background:{{ apStatusBg }};color:{{ apStatusOn }}">{{ apStatus }}</span>
+          </div>
+          <input value="{{ apName }}" onInput="{{ onApName }}" placeholder="Project name" style="width:100%;font-family:var(--fu);font-weight:800;font-size:28px;line-height:34px;letter-spacing:-0.03em;color:var(--text);background:transparent;border:none;border-bottom:1px solid var(--border);padding:0 0 6px;margin:0 0 8px" style-focus="border-bottom-color:var(--info);outline:none">
+          <div style="display:flex;align-items:center;gap:6px">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="var(--muted)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+            <div style="position:relative">
+              <select value="{{ apFacility }}" onChange="{{ onApFacility }}" style="appearance:none;font-family:var(--fb);font-size:15px;color:var(--muted);padding:2px 24px 2px 4px;background:transparent;border:none;cursor:pointer" style-focus="outline:none;color:var(--text)">
+                <sc-for list="{{ facilityOpts }}" as="o" hint-placeholder-count="5"><option>{{ o }}</option></sc-for>
+              </select>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--muted)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:6px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;flex-shrink:0">
+          <button onClick="{{ goLibrary }}" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);cursor:pointer;background:var(--surface);color:var(--text);border:1px solid var(--border-s);font-size:14px;padding:10px 16px" style-hover="background:var(--surface-m)">Cancel</button>
+          <button onClick="{{ createProject }}" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);border:1px solid transparent;cursor:pointer;background:var(--pos);color:#fff;font-size:14px;padding:10px 16px" style-hover="background:var(--pos-s)">Create project</button>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px">
+          <p style="font-family:var(--fu);font-weight:500;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);margin:0 0 8px">Est. cost <span style="color:var(--pos)">*</span></p>
+          <input value="{{ apCost }}" onInput="{{ onApCost }}" placeholder="$120,000" style="width:100%;font-family:var(--fu);font-weight:800;font-size:22px;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--text);background:transparent;border:none;padding:0" style-focus="outline:none">
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px">
+          <p style="font-family:var(--fu);font-weight:500;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);margin:0 0 8px">Premium reduction</p>
+          <input value="{{ apPremium }}" onInput="{{ onApPremium }}" placeholder="—" style="width:100%;font-family:var(--fu);font-weight:800;font-size:22px;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--text);background:transparent;border:none;padding:0" style-focus="outline:none">
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px">
+          <p style="font-family:var(--fu);font-weight:500;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);margin:0 0 8px">Status</p>
+          <div style="position:relative">
+            <select value="{{ apStatus }}" onChange="{{ onApStatus }}" style="width:100%;appearance:none;font-family:var(--fu);font-weight:700;font-size:15px;color:var(--text);padding:2px 22px 2px 0;background:transparent;border:none;cursor:pointer" style-focus="outline:none">
+              <option>Not started</option><option>Pending Funding</option><option>Funding approved</option><option>In Progress</option><option>Completed</option>
+            </select>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="var(--muted)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:2px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px">
+          <p style="font-family:var(--fu);font-weight:500;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);margin:0 0 8px">Category</p>
+          <p style="font-family:var(--fu);font-weight:800;font-size:16px;margin:6px 0 0;letter-spacing:-0.01em">Multi-Hazard</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:20px;align-items:start">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;box-shadow:var(--sh-card)">
+          <h2 style="font-family:var(--fu);font-weight:700;font-size:16px;margin:0 0 10px;letter-spacing:-0.01em">Project overview <span style="color:var(--pos)">*</span></h2>
+          <textarea value="{{ apDesc }}" onInput="{{ onApDesc }}" placeholder="Describe the project scope and the risk it mitigates." style="width:100%;min-height:130px;resize:vertical;font-family:var(--fb);font-size:14px;line-height:21px;padding:11px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);color:var(--text)" style-focus="border-color:var(--info);box-shadow:0 0 0 3px color-mix(in srgb, var(--info) 30%, transparent);outline:none"></textarea>
+          <div style="font-family:var(--fb);font-size:12px;color:var(--muted);margin-top:10px">Premium reduction is the estimated annual insurance premium reduction, in percent.</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;box-shadow:var(--sh-card)">
+          <h2 style="font-family:var(--fu);font-weight:700;font-size:16px;margin:0 0 14px;letter-spacing:-0.01em">Details</h2>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)"><span style="font-family:var(--fb);font-size:14px;color:var(--muted)">Facility</span><span style="font-family:var(--fu);font-weight:600;font-size:14px;text-align:right">{{ apFacilityLabel }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)"><span style="font-family:var(--fb);font-size:14px;color:var(--muted)">Risk category</span><span style="font-family:var(--fu);font-weight:600;font-size:14px">Multi-Hazard</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0"><span style="font-family:var(--fb);font-size:14px;color:var(--muted)">Status</span><span style="font-family:var(--fu);font-weight:600;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 9px;border-radius:var(--r-full);background:{{ apStatusBg }};color:{{ apStatusOn }}">{{ apStatus }}</span></div>
+        </div>
+      </div>
+
+      <sc-if value="{{ apError }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:8px;align-items:center;margin-top:16px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--crit);background:var(--crit-c)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--crit)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M12 3 2 20h20zM12 9v5M12 17h.01"></path></svg><span style="font-family:var(--fb);font-size:13px;color:var(--text)">{{ apError }}</span></div>
+      </sc-if>
+    </section>
+    </sc-if>
+
+    <sc-if value="{{ showProject }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:900px;animation:pl-fade .2s ease-out">
+      <button onClick="{{ closePanel }}" style="font-family:var(--fu);font-weight:600;font-size:13px;background:none;border:none;cursor:pointer;color:var(--muted);padding:0;display:inline-flex;align-items:center;gap:6px;margin-bottom:14px" style-hover="color:var(--text)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Back to library</button>
+
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:6px">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-family:var(--fu);font-weight:600;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 9px;border-radius:var(--r-full);background:{{ sel.catBg }};color:{{ sel.catOn }}">{{ sel.category }}</span>
+            <span style="font-family:var(--fu);font-weight:600;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 9px;border-radius:var(--r-full);background:{{ sel.stBg }};color:{{ sel.stOn }}">{{ sel.status }}</span>
+          </div>
+          <h1 style="font-family:var(--fu);font-weight:800;font-size:28px;line-height:34px;margin:0 0 4px;letter-spacing:-0.03em">{{ sel.name }}</h1>
+          <p style="font-family:var(--fb);font-size:15px;color:var(--muted);margin:0;display:flex;align-items:center;gap:6px"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>{{ sel.facility }} · {{ sel.region }}</p>
+        </div>
+        <div style="display:flex;gap:10px;flex-shrink:0">
+          <button onClick="{{ sel.approve }}" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);border:1px solid transparent;cursor:pointer;background:var(--pos);color:#fff;font-size:14px;padding:10px 16px" style-hover="background:var(--pos-s)">Approve Project</button>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px"><p style="font-family:var(--fu);font-weight:500;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);margin:0 0 8px">Est. CapEx</p><p style="font-family:var(--fu);font-weight:800;font-size:22px;margin:0;letter-spacing:-0.02em;font-variant-numeric:tabular-nums">{{ sel.costRange }}</p></div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px"><p style="font-family:var(--fu);font-weight:500;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);margin:0 0 8px">5-yr savings</p><p style="font-family:var(--fu);font-weight:800;font-size:22px;margin:0;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--pos)">{{ sel.savings }}</p></div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px"><p style="font-family:var(--fu);font-weight:500;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);margin:0 0 8px">ROI (5-yr)</p><p style="font-family:var(--fu);font-weight:800;font-size:22px;margin:0;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--pos)">{{ sel.roi }}</p></div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px"><p style="font-family:var(--fu);font-weight:500;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);margin:0 0 8px">Payback</p><p style="font-family:var(--fu);font-weight:800;font-size:22px;margin:0;letter-spacing:-0.02em;font-variant-numeric:tabular-nums">{{ sel.payback }}</p></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:20px;align-items:start">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;box-shadow:var(--sh-card)">
+          <h2 style="font-family:var(--fu);font-weight:700;font-size:16px;margin:0 0 10px;letter-spacing:-0.01em">Project overview</h2>
+          <p style="font-family:var(--fb);font-size:14px;line-height:21px;color:var(--muted);margin:0 0 18px">{{ sel.rationale }}</p>
+          <p style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin:0 0 12px">Financial justification</p>
+          <div style="border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden">
+            <div style="display:flex;justify-content:space-between;padding:12px 16px"><span style="font-family:var(--fb);font-size:14px;color:var(--muted)">Est. CapEx</span><span style="font-family:var(--fu);font-weight:600;font-size:14px;font-variant-numeric:tabular-nums">{{ sel.costRange }}</span></div>
+            <div style="display:flex;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--border)"><span style="font-family:var(--fb);font-size:14px;color:var(--muted)">Projected 5-yr savings</span><span style="font-family:var(--fu);font-weight:800;font-size:14px;font-variant-numeric:tabular-nums;color:var(--pos)">{{ sel.savings }}</span></div>
+            <div style="display:flex;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--border)"><span style="font-family:var(--fb);font-size:14px;color:var(--muted)">Payback period</span><span style="font-family:var(--fu);font-weight:600;font-size:14px;font-variant-numeric:tabular-nums">{{ sel.payback }}</span></div>
+            <div style="display:flex;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--border)"><span style="font-family:var(--fb);font-size:14px;color:var(--muted)">Return on investment (5-yr)</span><span style="font-family:var(--fu);font-weight:800;font-size:14px;font-variant-numeric:tabular-nums;color:var(--pos)">{{ sel.roi }}</span></div>
+            <div style="display:flex;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--border)"><span style="font-family:var(--fb);font-size:14px;color:var(--muted)">Insurance premium impact</span><span style="font-family:var(--fu);font-weight:600;font-size:14px;font-variant-numeric:tabular-nums">{{ sel.premium }}</span></div>
+          </div>
+          <p style="font-family:var(--fb);font-size:12px;font-style:italic;color:#8a94a3;margin:16px 0 0">Estimate — based on industry cost data, not a site-specific engineering assessment.</p>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;box-shadow:var(--sh-card)">
+          <h2 style="font-family:var(--fu);font-weight:700;font-size:16px;margin:0 0 14px;letter-spacing:-0.01em">Details</h2>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)"><span style="font-family:var(--fb);font-size:14px;color:var(--muted)">Facility</span><span style="font-family:var(--fu);font-weight:600;font-size:14px;text-align:right">{{ sel.facility }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)"><span style="font-family:var(--fb);font-size:14px;color:var(--muted)">Region</span><span style="font-family:var(--fu);font-weight:600;font-size:14px">{{ sel.region }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)"><span style="font-family:var(--fb);font-size:14px;color:var(--muted)">Risk category</span><span style="font-family:var(--fu);font-weight:600;font-size:14px">{{ sel.category }}</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0"><span style="font-family:var(--fb);font-size:14px;color:var(--muted)">Status</span><span style="font-family:var(--fu);font-weight:600;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 9px;border-radius:var(--r-full);background:{{ sel.stBg }};color:{{ sel.stOn }}">{{ sel.status }}</span></div>
+        </div>
+      </div>
+    </section>
+    </sc-if>
+  </main>
+
+  <!-- TOAST -->
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;top:68px;right:24px;z-index:70;display:flex;gap:10px;align-items:flex-start;min-width:280px;max-width:360px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--pos);border-radius:var(--r);box-shadow:var(--sh-over);padding:12px 14px;animation:pl-slide .18s ease-out">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--pos)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><path d="m5 12 5 5 9-11"></path></svg>
+      <div style="flex:1"><p style="font-family:var(--fu);font-weight:700;font-size:13px;margin:0 0 2px;color:var(--on-pos-c)">{{ toastTitle }}</p><p style="font-family:var(--fb);font-size:13px;line-height:18px;margin:0;color:var(--muted)">{{ toastBody }}</p></div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:800}}">
+class Component extends DCLogic {
+  state = { cat: 'All', sort: 'roi', region: 'All facilities', selId: null, toast: null,
+    page: 'library', custom: [],
+    apName: '', apFacility: '', apCost: '', apPremium: '', apDesc: '', apStatus: 'Not started', apError: '' };
+
+  statusColor(s) {
+    if (s === 'Pending Funding') return { bg: 'var(--warn-c)', on: 'var(--on-warn-c)' };
+    if (s === 'Funding approved') return { bg: 'var(--info-c)', on: 'var(--on-info-c)' };
+    if (s === 'In Progress') return { bg: 'var(--primary)', on: '#fff' };
+    if (s === 'Completed') return { bg: 'var(--pos-c)', on: 'var(--on-pos-c)' };
+    return { bg: 'var(--surface-m)', on: 'var(--charcoal)' };
+  }
+
+  createProject() {
+    const name = this.state.apName.trim();
+    const facility = this.state.apFacility.trim();
+    const cost = parseInt(String(this.state.apCost).replace(/[^0-9]/g, ''), 10);
+    const desc = this.state.apDesc.trim();
+    if (!name || !facility || facility === 'Select facility' || !cost || !desc) { this.setState({ apError: 'Please complete all required fields (project name, facility, a numeric cost, and description).' }); return; }
+    const prem = String(this.state.apPremium).replace(/[^0-9.]/g, '');
+    const premium = prem === '' ? null : -Math.abs(parseFloat(prem));
+    const proj = { id: 'c' + (++this._c || (this._c = 1)), name, facility, region: 'Custom', category: 'Multi-Hazard',
+      cost, savings: 0, premium, payback: null, workflow: this.state.apStatus, rationale: desc };
+    this.setState(s => ({ custom: [proj, ...s.custom], page: 'library', apName: '', apFacility: '', apCost: '', apPremium: '', apDesc: '', apStatus: 'Not started', apError: '',
+      toast: { title: 'Project created', body: name + ' added to the library.' } }));
+    this._t = (this._t || 0) + 1; const tid = this._t;
+    setTimeout(() => { if (this._t === tid) this.setState({ toast: null }); }, 3600);
+  }
+
+  cats() {
+    return {
+      'Flood': { color: 'var(--crit)', bg: 'var(--crit-c)', on: 'var(--on-crit-c)' },
+      'Hurricane/Wind': { color: 'var(--crit)', bg: 'var(--crit-c)', on: 'var(--on-crit-c)' },
+      'Extreme Heat': { color: 'var(--warn)', bg: 'var(--warn-c)', on: 'var(--on-warn-c)' },
+      'Wildfire': { color: 'var(--crit)', bg: 'var(--crit-c)', on: 'var(--on-crit-c)' },
+      'Severe Storm/Hail': { color: 'var(--info)', bg: 'var(--info-c)', on: 'var(--on-info-c)' },
+      'Multi-Hazard': { color: 'var(--crit)', bg: 'var(--crit-c)', on: 'var(--on-crit-c)' },
+    };
+  }
+
+  data() {
+    return [
+      { id: 1, name: 'Install flood barriers at entrances', facility: 'New Orleans Plant', region: 'Gulf Coast', category: 'Flood', cost: 35000, savings: 220000, premium: -6, payback: 8 },
+      { id: 2, name: 'Move emergency generators above flood level', facility: 'Miami Distribution Center', region: 'Gulf Coast', category: 'Flood', cost: 180000, savings: 900000, premium: -12, payback: 22 },
+      { id: 3, name: 'Install permanent roof tie-down enhancements', facility: 'Tampa Warehouse', region: 'Southeast', category: 'Hurricane/Wind', cost: 60000, savings: 410000, premium: -9, payback: 16 },
+      { id: 4, name: 'Elevate electrical switchgear above flood elevation', facility: 'Houston Plant', region: 'Gulf Coast', category: 'Flood', cost: 150000, savings: 700000, premium: -10, payback: 26 },
+      { id: 5, name: 'Anchor rooftop HVAC equipment', facility: 'Charleston Distribution Center', region: 'Southeast', category: 'Hurricane/Wind', cost: 42000, savings: 310000, premium: -5, payback: 14 },
+      { id: 6, name: 'Upgrade building automation for heat response', facility: 'Phoenix Plant', region: 'Southwest', category: 'Extreme Heat', cost: 95000, savings: 260000, premium: -2, payback: 28 },
+      { id: 7, name: 'Install hail-resistant roofing', facility: 'Dallas Warehouse', region: 'Southwest', category: 'Severe Storm/Hail', cost: 110000, savings: 340000, premium: -4, payback: 32 },
+      { id: 8, name: 'Install lightning protection', facility: 'Sacramento Distribution Center', region: 'West', category: 'Severe Storm/Hail', cost: 18000, savings: 80000, premium: -1, payback: 20 },
+      { id: 9, name: 'Increase site drainage capacity', facility: 'Reno Plant', region: 'West', category: 'Flood', cost: 85000, savings: 190000, premium: -3, payback: 36 },
+      { id: 10, name: 'Install cool roof coating', facility: 'Phoenix Distribution Center', region: 'Southwest', category: 'Extreme Heat', cost: 70000, savings: 150000, premium: -3, payback: 38 },
+    ];
+  }
+
+  money(n) {
+    if (n >= 1000000) return '$' + (n / 1000000).toFixed(n % 1000000 === 0 ? 0 : 1) + 'M';
+    if (n >= 1000) return '$' + Math.round(n / 1000) + 'k';
+    return '$' + n.toLocaleString();
+  }
+  moneyFull(n) { return '$' + n.toLocaleString(); }
+  band(n, f) { return Math.round(n * f / 1000) * 1000; }
+
+  decorate(p) {
+    const c = this.cats()[p.category];
+    const wf = p.workflow;
+    const hasStatus = !!wf;
+    const wfc = this.statusColor(wf);
+    const quick = p.payback != null && p.payback < 24;
+    const hasSav = p.savings > 0;
+    const roi = hasSav && p.cost ? Math.round(p.savings / p.cost * 100) + '%' : '—';
+    return {
+      ...p,
+      catBg: c.bg, catOn: c.on,
+      costRange: p.cost ? this.money(this.band(p.cost, 0.8)) + '–' + this.money(this.band(p.cost, 1.4)) : '—',
+      savings: hasSav ? this.moneyFull(p.savings) : '—',
+      premium: (typeof p.premium === 'number') ? p.premium + '%' : '—',
+      payback: p.payback != null ? p.payback + ' mo' : '—',
+      roi,
+      hasStatus,
+      status: wf ? wf : (quick ? 'Quick Win' : 'Strategic Investment'),
+      stBg: wf ? wfc.bg : (quick ? 'var(--info-c)' : 'var(--surface-m)'),
+      stOn: wf ? wfc.on : (quick ? 'var(--on-info-c)' : 'var(--charcoal)'),
+      rationale: p.rationale ? p.rationale : (quick
+        ? 'Fast payback and a strong avoided-loss multiple make this a high-confidence approval this fiscal year.'
+        : 'Larger capital commitment with a longer horizon; best positioned as a multi-year strategic allocation.'),
+      open: () => this.setState({ selId: p.id, page: 'project' }),
+      approve: (e) => { if (e) e.stopPropagation(); this.notify('Project approved', p.name + ' created and routed for funding.'); },
+    };
+  }
+
+  notify(title, body) {
+    this._t = (this._t || 0) + 1;
+    const id = this._t;
+    this.setState({ toast: { title, body } });
+    setTimeout(() => { if (this._t === id) this.setState({ toast: null }); }, 3600);
+  }
+
+  sortFn(mode) {
+    if (mode === 'cost') return (a, b) => a.cost - b.cost;
+    if (mode === 'payback') return (a, b) => a.payback - b.payback;
+    if (mode === 'reduction') return (a, b) => b.savings - a.savings;
+    return (a, b) => (b.savings / b.cost) - (a.savings / a.cost);
+  }
+
+  renderVals() {
+    const all = [...this.state.custom, ...this.data()];
+    const catMeta = this.cats();
+    const catOrder = ['Flood', 'Hurricane/Wind', 'Extreme Heat', 'Severe Storm/Hail', 'Wildfire', 'Multi-Hazard'];
+    const chipDefs = ['All', 'Flood', 'Hurricane/Wind', 'Extreme Heat', 'Wildfire', 'Severe Storm/Hail', 'Multi-Hazard'];
+
+    const regions = [...new Set(all.map(p => p.region))];
+    const facilities = [...new Set(all.map(p => p.facility))].sort();
+    const regionOpts = ['All facilities', ...regions.map(r => 'Region: ' + r), ...facilities];
+    const region = this.state.region;
+
+    let filtered = all.filter(p => this.state.cat === 'All' || p.category === this.state.cat);
+    if (region !== 'All facilities') {
+      if (region.indexOf('Region: ') === 0) { const r = region.slice(8); filtered = filtered.filter(p => p.region === r); }
+      else filtered = filtered.filter(p => p.facility === region);
+    }
+
+    const sumSav = filtered.reduce((s, p) => s + p.savings, 0);
+    const sumCap = filtered.reduce((s, p) => s + p.cost, 0);
+    const avgPb = filtered.length ? Math.round(filtered.reduce((s, p) => s + p.payback, 0) / filtered.length) : 0;
+
+    const sorter = this.sortFn(this.state.sort);
+    const rows = [...filtered].sort(sorter).map((p, i) => ({ ...this.decorate(p), rank: i + 1 }));
+
+    const chipOn = 'font-family:var(--fu);font-weight:600;font-size:13px;padding:7px 14px;border-radius:var(--r-full);cursor:pointer;border:1px solid var(--primary);background:var(--primary);color:#fff;';
+    const chipOff = 'font-family:var(--fu);font-weight:600;font-size:13px;padding:7px 14px;border-radius:var(--r-full);cursor:pointer;border:1px solid var(--border-s);background:var(--surface);color:var(--text);';
+    const chips = chipDefs.map(l => ({ label: l, style: (this.state.cat === l ? chipOn : chipOff), onClick: () => this.setState({ cat: l }) }));
+
+    const sortMap = { 'Highest ROI': 'roi', 'Lowest Cost': 'cost', 'Fastest Payback': 'payback', 'Highest Risk Reduction': 'reduction' };
+    const sortLabelMap = { roi: 'Highest ROI', cost: 'Lowest Cost', payback: 'Fastest Payback', reduction: 'Highest Risk Reduction' };
+
+    const selRaw = all.find(p => p.id === this.state.selId);
+    const sel = selRaw ? this.decorate(selRaw) : null;
+
+    return {
+      showLibrary: this.state.page === 'library',
+      showAdd: this.state.page === 'add',
+      showProject: this.state.page === 'project' && !!sel,
+      goAdd: () => this.setState({ page: 'add', apError: '' }),
+      goLibrary: () => this.setState({ page: 'library' }),
+      facilityOpts: ['Select facility', ...[...new Set(this.data().map(p => p.facility))].sort()],
+      apFacilityLabel: (this.state.apFacility && this.state.apFacility !== 'Select facility') ? this.state.apFacility : '—',
+      apStatusBg: this.statusColor(this.state.apStatus).bg,
+      apStatusOn: this.statusColor(this.state.apStatus).on,
+      apName: this.state.apName, apFacility: this.state.apFacility, apCost: this.state.apCost,
+      apPremium: this.state.apPremium, apDesc: this.state.apDesc, apStatus: this.state.apStatus, apError: this.state.apError,
+      onApName: (e) => this.setState({ apName: e.target.value }),
+      onApFacility: (e) => this.setState({ apFacility: e.target.value }),
+      onApCost: (e) => this.setState({ apCost: e.target.value }),
+      onApPremium: (e) => this.setState({ apPremium: e.target.value }),
+      onApDesc: (e) => this.setState({ apDesc: e.target.value }),
+      onApStatus: (e) => this.setState({ apStatus: e.target.value }),
+      createProject: () => this.createProject(),
+      chips, rows,
+      regionOpts, region,
+      onRegion: (e) => this.setState({ region: e.target.value }),
+      sortLabel: sortLabelMap[this.state.sort],
+      onSort: (e) => this.setState({ sort: sortMap[e.target.value] || 'roi' }),
+      sumSavings: this.money(sumSav), sumCapex: this.money(sumCap),
+      avgPayback: avgPb + ' mo',
+      countLabel: filtered.length + (filtered.length === 1 ? ' project' : ' projects') + ' shown',
+      isEmpty: filtered.length === 0,
+      sel, closePanel: () => this.setState({ selId: null, page: 'library' }),
+      toast: this.state.toast,
+      toastTitle: this.state.toast ? this.state.toast.title : '',
+      toastBody: this.state.toast ? this.state.toast.body : '',
+    };
+  }
+}
+</script>
+</body>
+</html>

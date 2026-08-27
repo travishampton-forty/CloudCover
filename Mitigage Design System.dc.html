@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+  .mg-root {
+    --fu: 'Archivo', system-ui, sans-serif;
+    --fb: 'Source Sans 3', system-ui, sans-serif;
+    --primary: #0D1B2A; --primary-h: #1B2E44; --on-primary: #FFFFFF; --charcoal: #2B3A4F;
+    --bg: #EAECEF; --surface: #FFFFFF; --surface-m: #F5F6F8; --text: #0D1B2A; --muted: #2B3A4F;
+    --border: #D7DBE0; --border-s: #2B3A4F;
+    --pos: #1C847F; --pos-s: #12615D; --pos-c: #E4F2F1; --on-pos-c: #12615D;
+    --warn: #F39E21; --warn-s: #8A5A0B; --warn-c: #FDF1DE; --on-warn-c: #8A5A0B;
+    --crit: #D95652; --crit-s: #B23A36; --crit-c: #FBEAEA; --on-crit-c: #B23A36;
+    --info: #52A6D2; --info-s: #2A6E93; --info-c: #E4F1F8; --on-info-c: #2A6E93;
+    --r-sm: 4px; --r: 8px; --r-lg: 12px; --r-xl: 16px; --r-full: 9999px;
+    --sh-card: 0 1px 2px rgba(13,27,42,0.06), 0 2px 8px rgba(13,27,42,0.04);
+    --sh-over: 0 12px 36px rgba(13,27,42,0.20);
+  }
+  .mg-root[data-theme="dark"] {
+    --bg: #0D1B2A; --surface: #14243A; --surface-m: #1B2E44; --text: #EAECEF; --muted: #AEB7C2;
+    --border: #2B3A4F; --border-s: #3C4F66; --primary: #1B2E44; --primary-h: #25405E;
+    --pos: #2FA39D; --pos-c: #0F2E2C; --on-pos-c: #4FC3BD;
+    --warn: #F3AE4A; --warn-c: #3A2A0E; --on-warn-c: #F3B24D;
+    --crit: #E4726E; --crit-c: #3A1B1A; --on-crit-c: #E8807C;
+    --info: #6FB7DB; --info-c: #12293A; --on-info-c: #7FC0E3;
+    --sh-card: 0 0 0 1px rgba(0,0,0,0.2); --sh-over: 0 12px 36px rgba(0,0,0,0.55);
+  }
+  .mg-root main {
+    --bg: #EAECEF; --surface: #FFFFFF; --surface-m: #F5F6F8; --text: #0D1B2A; --muted: #2B3A4F;
+    --border: #D7DBE0; --border-s: #2B3A4F; --primary: #0D1B2A; --primary-h: #1B2E44;
+    --pos: #1C847F; --pos-c: #E4F2F1; --on-pos-c: #12615D;
+    --warn: #F39E21; --warn-c: #FDF1DE; --on-warn-c: #8A5A0B;
+    --crit: #D95652; --crit-c: #FBEAEA; --on-crit-c: #B23A36;
+    --info: #52A6D2; --info-c: #E4F1F8; --on-info-c: #2A6E93;
+    --sh-card: 0 1px 2px rgba(13,27,42,0.06), 0 2px 8px rgba(13,27,42,0.04);
+    background: var(--bg); color: var(--text);
+  }
+  .mg-root, .mg-root * { box-sizing: border-box; }
+  @keyframes mg-fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  @keyframes mg-pop { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+  @keyframes mg-slide { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
+  .mg-scroll::-webkit-scrollbar { width: 10px; height: 10px; }
+  .mg-scroll::-webkit-scrollbar-thumb { background: var(--border-s); border-radius: 9999px; border: 2px solid transparent; background-clip: padding-box; }
+  .mg-tip > span { opacity: 0; transition: opacity .14s ease; }
+  .mg-tip:hover > span { opacity: 1; }
+</style>
+</helmet>
+
+<div class="mg-root" data-theme="{{ theme }}" style="font-family:var(--fb);background:var(--bg);color:var(--text);display:grid;grid-template-columns:248px 1fr;grid-template-rows:56px 1fr;grid-template-areas:'brand topbar' 'nav main';height:100vh;overflow:hidden">
+
+  <div style="grid-area:brand;background:var(--primary);color:#fff;display:flex;align-items:center;gap:10px;padding:0 24px;font-family:var(--fu)">
+    <span style="width:28px;height:28px;border-radius:7px;background:var(--pos);display:grid;place-items:center">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"></path><path d="m9 12 2 2 4-4"></path></svg>
+    </span>
+    <span style="font-weight:800;font-size:17px;letter-spacing:-0.03em">Cloud<span style="color:#7FC0E3">Cover</span></span>
+  </div>
+
+  <header style="grid-area:topbar;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <a href="Mitigage Prototype.dc.html" style="display:inline-flex;align-items:center;gap:6px;font-family:var(--fu);font-weight:600;font-size:13px;text-decoration:none;color:var(--text);background:var(--surface-m);border:1px solid var(--border);border-radius:var(--r);padding:6px 12px" style-hover="border-color:var(--border-s)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to prototype</a>
+      <div style="font-family:var(--fu);font-weight:500;font-size:14px;color:var(--muted)">Design System <span style="opacity:.5">/</span> <b style="color:var(--text);font-weight:700">{{ activeLabel }}</b></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="font-family:var(--fu);font-size:12px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted)">{{ themeLabel }}</span>
+      <button onClick="{{ toggleTheme }}" title="Toggle theme" style="background:var(--surface-m);border:1px solid var(--border);color:var(--text);width:36px;height:36px;border-radius:var(--r);cursor:pointer;display:grid;place-items:center" style-hover="border-color:var(--border-s)">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="{{ themeIcon }}"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mg-scroll" style="grid-area:nav;background:var(--primary);color:#cfd6de;padding:16px 12px;overflow-y:auto">
+    <sc-for list="{{ nav }}" as="grp" hint-placeholder-count="3">
+      <div style="font-family:var(--fu);font-size:11px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:#6f8098;padding:16px 8px 4px">{{ grp.title }}</div>
+      <sc-for list="{{ grp.items }}" as="it" hint-placeholder-count="4">
+        <a onClick="{{ it.onClick }}" style="{{ it.style }}" style-hover="background:rgba(255,255,255,0.08);color:#fff">
+          <span style="width:8px;height:8px;border-radius:50%;flex-shrink:0;background:{{ it.dot }}"></span>{{ it.label }}
+        </a>
+      </sc-for>
+    </sc-for>
+  </nav>
+
+  <main class="mg-scroll" style="grid-area:main;overflow-y:auto;padding:32px 48px">
+
+    <!-- COLORS -->
+    <sc-if value="{{ show.colors }}" hint-placeholder-val="{{ true }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Colors</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Rationed and always semantic. Structural navy frames the app; each accent carries exactly one meaning.</p>
+      <h2 style="font-family:var(--fu);font-weight:700;font-size:18px;margin:0 0 16px;letter-spacing:-0.01em">Structural &amp; surfaces</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card)"><div style="height:74px;background:#0D1B2A"></div><div style="padding:10px 12px"><div style="font-family:var(--fu);font-weight:700;font-size:13px">primary</div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);text-transform:uppercase">#0D1B2A</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Deep Slate Navy · nav, header, buttons</div></div></div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card)"><div style="height:74px;background:#2B3A4F"></div><div style="padding:10px 12px"><div style="font-family:var(--fu);font-weight:700;font-size:13px">charcoal</div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);text-transform:uppercase">#2B3A4F</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Secondary text · borders</div></div></div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card)"><div style="height:74px;background:#EAECEF"></div><div style="padding:10px 12px"><div style="font-family:var(--fu);font-weight:700;font-size:13px">background</div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);text-transform:uppercase">#EAECEF</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Alabaster canvas</div></div></div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card)"><div style="height:74px;background:#FFFFFF;border-bottom:1px solid #D7DBE0"></div><div style="padding:10px 12px"><div style="font-family:var(--fu);font-weight:700;font-size:13px">surface</div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);text-transform:uppercase">#FFFFFF</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Cards · panels</div></div></div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card)"><div style="height:74px;background:#D7DBE0"></div><div style="padding:10px 12px"><div style="font-family:var(--fu);font-weight:700;font-size:13px">outline</div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);text-transform:uppercase">#D7DBE0</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Hairline borders</div></div></div>
+      </div>
+      <h2 style="font-family:var(--fu);font-weight:700;font-size:18px;margin:32px 0 16px;letter-spacing:-0.01em">Semantic</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card)"><div style="height:74px;background:#1C847F"></div><div style="padding:10px 12px"><div style="font-family:var(--fu);font-weight:700;font-size:13px">positive</div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);text-transform:uppercase">#1C847F</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Teal · financial health / ROI</div></div></div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card)"><div style="height:74px;background:#F39E21"></div><div style="padding:10px 12px"><div style="font-family:var(--fu);font-weight:700;font-size:13px">warning</div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);text-transform:uppercase">#F39E21</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Amber · moderate risk</div></div></div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card)"><div style="height:74px;background:#D95652"></div><div style="padding:10px 12px"><div style="font-family:var(--fu);font-weight:700;font-size:13px">critical</div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);text-transform:uppercase">#D95652</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Terracotta · critical risk</div></div></div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card)"><div style="height:74px;background:#52A6D2"></div><div style="padding:10px 12px"><div style="font-family:var(--fu);font-weight:700;font-size:13px">info</div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);text-transform:uppercase">#52A6D2</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Sky Blue · informational</div></div></div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card)"><div style="height:74px;background:#E4F2F1"></div><div style="padding:10px 12px"><div style="font-family:var(--fu);font-weight:700;font-size:13px">positive-container</div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);text-transform:uppercase">#E4F2F1</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Teal badge fill</div></div></div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card)"><div style="height:74px;background:#FDF1DE"></div><div style="padding:10px 12px"><div style="font-family:var(--fu);font-weight:700;font-size:13px">warning-container</div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);text-transform:uppercase">#FDF1DE</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Amber badge fill</div></div></div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card)"><div style="height:74px;background:#FBEAEA"></div><div style="padding:10px 12px"><div style="font-family:var(--fu);font-weight:700;font-size:13px">critical-container</div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);text-transform:uppercase">#FBEAEA</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Critical badge fill</div></div></div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card)"><div style="height:74px;background:#E4F1F8"></div><div style="padding:10px 12px"><div style="font-family:var(--fu);font-weight:700;font-size:13px">info-container</div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);text-transform:uppercase">#E4F1F8</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Info badge fill</div></div></div>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- TYPOGRAPHY -->
+    <sc-if value="{{ show.typography }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Typography</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Dual stack — <b>Archivo</b>, a bold grotesque, for numbers &amp; structure; <b>Source Sans 3</b> for editorial body text.</p>
+      <div style="border-bottom:1px solid var(--border);padding:16px 0;display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:baseline"><div style="font-family:var(--fu);font-size:12px;color:var(--muted)">kpi<small style="display:block;margin-top:2px">Archivo 800 · 34/40</small></div><div style="font-family:var(--fu);font-weight:800;font-size:34px;line-height:40px;letter-spacing:-0.02em">$4.8M projected cost avoidance</div></div>
+      <div style="border-bottom:1px solid var(--border);padding:16px 0;display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:baseline"><div style="font-family:var(--fu);font-size:12px;color:var(--muted)">section<small style="display:block;margin-top:2px">Archivo 700 · 24/32</small></div><div style="font-family:var(--fu);font-weight:700;font-size:24px;line-height:32px;letter-spacing:-0.01em">Portfolio climate exposure</div></div>
+      <div style="border-bottom:1px solid var(--border);padding:16px 0;display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:baseline"><div style="font-family:var(--fu);font-size:12px;color:var(--muted)">card-title<small style="display:block;margin-top:2px">Archivo 600 · 16/22</small></div><div style="font-family:var(--fu);font-weight:600;font-size:16px;line-height:22px">Operational continuity score</div></div>
+      <div style="border-bottom:1px solid var(--border);padding:16px 0;display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:baseline"><div style="font-family:var(--fu);font-size:12px;color:var(--muted)">label<small style="display:block;margin-top:2px">Archivo 600 · 14/20</small></div><div style="font-family:var(--fu);font-weight:600;font-size:14px">Add facility</div></div>
+      <div style="border-bottom:1px solid var(--border);padding:16px 0;display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:baseline"><div style="font-family:var(--fu);font-size:12px;color:var(--muted)">numeric<small style="display:block;margin-top:2px">Archivo 500 tabular · 14/20</small></div><div style="font-family:var(--fu);font-weight:500;font-variant-numeric:tabular-nums;font-size:14px">$1,240,000.00 &nbsp; $480,000.00 &nbsp; 14 mos</div></div>
+      <div style="border-bottom:1px solid var(--border);padding:16px 0;display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:baseline"><div style="font-family:var(--fu);font-size:12px;color:var(--muted)">body-lg<small style="display:block;margin-top:2px">Source Sans · 16/24</small></div><div style="font-family:var(--fb);font-size:16px;line-height:24px">Projected 5-year savings assume the current insurance premium trajectory.</div></div>
+      <div style="border-bottom:1px solid var(--border);padding:16px 0;display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:baseline"><div style="font-family:var(--fu);font-size:12px;color:var(--muted)">body<small style="display:block;margin-top:2px">Source Sans · 14/20</small></div><div style="font-family:var(--fb);font-size:14px;line-height:20px">Miami Distribution Center — Tier 1, revenue critical, coastal inundation exposure.</div></div>
+      <div style="border-bottom:1px solid var(--border);padding:16px 0;display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:baseline"><div style="font-family:var(--fu);font-size:12px;color:var(--muted)">caption<small style="display:block;margin-top:2px">Archivo 600 · 11/16 · CAPS</small></div><div style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.06em;text-transform:uppercase">Avoided loss · 5-year horizon</div></div>
+    </section>
+    </sc-if>
+
+    <!-- SPACING -->
+    <sc-if value="{{ show.spacing }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Spacing</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">A 4px base rhythm keeps dense dashboards aligned without feeling cramped.</p>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;font-family:var(--fu);font-size:13px"><span style="width:92px;color:var(--muted)">xs · 4px</span><span style="height:16px;background:var(--info);border-radius:3px;width:4px"></span></div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;font-family:var(--fu);font-size:13px"><span style="width:92px;color:var(--muted)">sm · 8px</span><span style="height:16px;background:var(--info);border-radius:3px;width:8px"></span></div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;font-family:var(--fu);font-size:13px"><span style="width:92px;color:var(--muted)">md · 12px</span><span style="height:16px;background:var(--info);border-radius:3px;width:12px"></span></div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;font-family:var(--fu);font-size:13px"><span style="width:92px;color:var(--muted)">lg · 16px</span><span style="height:16px;background:var(--info);border-radius:3px;width:16px"></span></div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;font-family:var(--fu);font-size:13px"><span style="width:92px;color:var(--muted)">xl · 24px</span><span style="height:16px;background:var(--info);border-radius:3px;width:24px"></span></div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;font-family:var(--fu);font-size:13px"><span style="width:92px;color:var(--muted)">2xl · 32px</span><span style="height:16px;background:var(--info);border-radius:3px;width:32px"></span></div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;font-family:var(--fu);font-size:13px"><span style="width:92px;color:var(--muted)">3xl · 48px</span><span style="height:16px;background:var(--info);border-radius:3px;width:48px"></span></div>
+    </section>
+    </sc-if>
+
+    <!-- RADIUS -->
+    <sc-if value="{{ show.radius }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Radius</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Restrained, lightly softened — a precise instrument, not a friendly app.</p>
+      <div style="display:flex;gap:24px;flex-wrap:wrap">
+        <div style="width:110px"><div style="height:90px;background:var(--surface);border:2px solid var(--pos);box-shadow:var(--sh-card);border-radius:4px"></div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);margin-top:8px;text-align:center">sm · 4px</div></div>
+        <div style="width:110px"><div style="height:90px;background:var(--surface);border:2px solid var(--pos);box-shadow:var(--sh-card);border-radius:8px"></div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);margin-top:8px;text-align:center">md · 8px</div></div>
+        <div style="width:110px"><div style="height:90px;background:var(--surface);border:2px solid var(--pos);box-shadow:var(--sh-card);border-radius:12px"></div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);margin-top:8px;text-align:center">lg · 12px</div></div>
+        <div style="width:110px"><div style="height:90px;background:var(--surface);border:2px solid var(--pos);box-shadow:var(--sh-card);border-radius:16px"></div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);margin-top:8px;text-align:center">xl · 16px</div></div>
+        <div style="width:110px"><div style="height:90px;background:var(--surface);border:2px solid var(--pos);box-shadow:var(--sh-card);border-radius:9999px"></div><div style="font-family:var(--fu);font-size:12px;color:var(--muted);margin-top:8px;text-align:center">full · pill</div></div>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- ICONS -->
+    <sc-if value="{{ show.icons }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Icons</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">A single line set — <b>1.75px stroke</b>, round joins, 24px grid. Consistent weight reads as one precise instrument.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:12px">
+        <sc-for list="{{ icons }}" as="ic" hint-placeholder-count="8">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--sh-card);padding:18px 12px;display:flex;flex-direction:column;align-items:center;gap:10px">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--text)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="{{ ic.d }}"></path></svg>
+            <span style="font-family:var(--fu);font-size:12px;color:var(--muted)">{{ ic.name }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- BUTTON -->
+    <sc-if value="{{ show.button }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Button</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Primary = navy institutional fill. Destructive pairs terracotta with an icon — never color alone.</p>
+      <h2 style="font-family:var(--fu);font-weight:700;font-size:18px;margin:0 0 16px">Primary</h2>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
+        <button style="font-family:var(--fu);font-weight:600;border-radius:var(--r);border:1px solid transparent;cursor:pointer;background:var(--primary);color:var(--on-primary);font-size:13px;padding:5px 12px" style-hover="background:var(--primary-h)">Add facility</button>
+        <button style="font-family:var(--fu);font-weight:600;border-radius:var(--r);border:1px solid transparent;cursor:pointer;background:var(--primary);color:var(--on-primary);font-size:14px;padding:8px 16px" style-hover="background:var(--primary-h)">Add facility</button>
+        <button style="font-family:var(--fu);font-weight:600;border-radius:var(--r);border:1px solid transparent;cursor:pointer;background:var(--primary);color:var(--on-primary);font-size:15px;padding:11px 22px" style-hover="background:var(--primary-h)">Add facility</button>
+        <button disabled="" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);border:1px solid transparent;background:var(--primary);color:var(--on-primary);font-size:14px;padding:8px 16px;opacity:.45;cursor:not-allowed">Disabled</button>
+      </div>
+      <h2 style="font-family:var(--fu);font-weight:700;font-size:18px;margin:32px 0 16px">Secondary</h2>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
+        <button style="font-family:var(--fu);font-weight:600;border-radius:var(--r);cursor:pointer;background:var(--surface);color:var(--text);border:1px solid var(--border-s);font-size:13px;padding:5px 12px" style-hover="background:var(--surface-m)">Export</button>
+        <button style="font-family:var(--fu);font-weight:600;border-radius:var(--r);cursor:pointer;background:var(--surface);color:var(--text);border:1px solid var(--border-s);font-size:14px;padding:8px 16px" style-hover="background:var(--surface-m)">Export</button>
+        <button style="font-family:var(--fu);font-weight:600;border-radius:var(--r);cursor:pointer;background:var(--surface);color:var(--text);border:1px solid var(--border-s);font-size:15px;padding:11px 22px" style-hover="background:var(--surface-m)">Export</button>
+        <button disabled="" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);background:var(--surface);color:var(--text);border:1px solid var(--border-s);font-size:14px;padding:8px 16px;opacity:.45;cursor:not-allowed">Disabled</button>
+      </div>
+      <h2 style="font-family:var(--fu);font-weight:700;font-size:18px;margin:32px 0 16px">Destructive</h2>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
+        <button style="font-family:var(--fu);font-weight:600;border-radius:var(--r);border:1px solid transparent;cursor:pointer;background:var(--crit);color:#fff;font-size:14px;padding:8px 16px;display:inline-flex;align-items:center;gap:6px"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path></svg>Delete facility</button>
+        <button style="font-family:var(--fu);font-weight:600;border-radius:var(--r);border:1px solid transparent;cursor:pointer;background:var(--crit);color:#fff;font-size:15px;padding:11px 22px;display:inline-flex;align-items:center;gap:6px"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path></svg>Delete facility</button>
+      </div>
+      <h2 style="font-family:var(--fu);font-weight:700;font-size:18px;margin:32px 0 16px">Ghost</h2>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
+        <button style="font-family:var(--fu);font-weight:600;border-radius:var(--r);border:1px solid transparent;cursor:pointer;background:transparent;color:var(--info-s);font-size:14px;padding:8px 16px" style-hover="background:var(--info-c)">View details</button>
+        <button style="font-family:var(--fu);font-weight:600;border-radius:var(--r);border:1px solid transparent;cursor:pointer;background:transparent;color:var(--info-s);font-size:15px;padding:11px 22px" style-hover="background:var(--info-c)">View details</button>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- BADGE -->
+    <sc-if value="{{ show.badge }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Badge</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Container-fill + accessible text, always paired with a label. Maps 1:1 to risk semantics.</p>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
+        <span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);display:inline-flex;align-items:center;gap:5px;background:var(--crit-c);color:var(--on-crit-c)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20z"></path><path d="M12 9v5M12 17h.01"></path></svg>High exposure</span>
+        <span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);display:inline-flex;align-items:center;gap:5px;background:var(--warn-c);color:var(--on-warn-c)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>Medium exposure</span>
+        <span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);display:inline-flex;align-items:center;gap:5px;background:var(--info-c);color:var(--on-info-c)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>Low exposure</span>
+        <span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);display:inline-flex;align-items:center;gap:5px;background:var(--pos-c);color:var(--on-pos-c)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"></path></svg>Funded</span>
+      </div>
+      <h2 style="font-family:var(--fu);font-weight:700;font-size:18px;margin:32px 0 16px">Criticality tiers</h2>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);background:var(--crit-c);color:var(--on-crit-c)">Tier 1 · Revenue critical</span>
+        <span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);background:var(--warn-c);color:var(--on-warn-c)">Tier 2 · Core operations</span>
+        <span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);background:var(--info-c);color:var(--on-info-c)">Tier 3 · Administrative</span>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- CARD -->
+    <sc-if value="{{ show.card }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Card</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Default hairline border; highlight variant uses the stronger charcoal border. Savings render in Archivo Bold teal.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;box-shadow:var(--sh-card)">
+          <p style="font-family:var(--fu);font-weight:500;font-size:14px;color:var(--muted);margin:0 0 6px">Operational continuity score</p>
+          <p style="font-family:var(--fu);font-weight:800;font-size:32px;line-height:40px;margin:0;letter-spacing:-0.02em">92<span style="font-size:18px;color:var(--muted);font-weight:600">/100</span></p>
+          <span style="font-family:var(--fu);font-size:13px;margin-top:6px;display:inline-flex;gap:5px;align-items:center;color:var(--pos)">▲ 6 pts vs. last quarter</span>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;box-shadow:var(--sh-card)">
+          <p style="font-family:var(--fu);font-weight:500;font-size:14px;color:var(--muted);margin:0 0 6px">Projected 5-year cost avoidance</p>
+          <p style="font-family:var(--fu);font-weight:800;font-size:32px;line-height:40px;margin:0;letter-spacing:-0.02em;color:var(--pos)">$4.8M</p>
+          <span style="font-family:var(--fu);font-size:13px;margin-top:6px;display:inline-flex;gap:5px;align-items:center;color:var(--muted)">Across 7 proposed projects</span>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border-s);border-radius:var(--r-lg);padding:24px;box-shadow:var(--sh-card)">
+          <p style="font-family:var(--fu);font-weight:500;font-size:14px;color:var(--muted);margin:0 0 6px">Portfolio critical exposures</p>
+          <p style="font-family:var(--fu);font-weight:800;font-size:32px;line-height:40px;margin:0;letter-spacing:-0.02em;color:var(--crit)">3</p>
+          <span style="margin-top:6px;display:inline-flex"><span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);background:var(--crit-c);color:var(--on-crit-c)">Action required</span></span>
+        </div>
+      </div>
+      <h2 style="font-family:var(--fu);font-weight:700;font-size:18px;margin:32px 0 16px">"Top 3" climate risk card</h2>
+      <div style="background:var(--surface);border:1px solid var(--border-s);border-radius:var(--r-lg);padding:24px;box-shadow:var(--sh-card);max-width:420px">
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 0">
+          <span style="width:32px;height:32px;border-radius:var(--r);display:grid;place-items:center;flex-shrink:0;background:var(--crit-c)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--crit)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"></path></svg></span>
+          <span style="font-family:var(--fu);font-weight:700;font-size:14px;flex:1">1. Coastal inundation risk</span>
+          <span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);background:var(--crit-c);color:var(--on-crit-c)">High</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border)">
+          <span style="width:32px;height:32px;border-radius:var(--r);display:grid;place-items:center;flex-shrink:0;background:var(--warn-c)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h11a3 3 0 1 0-3-3M3 14h15a3 3 0 1 1-3 3"></path></svg></span>
+          <span style="font-family:var(--fu);font-weight:700;font-size:14px;flex:1">2. Severe storm stoppage</span>
+          <span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);background:var(--warn-c);color:var(--on-warn-c)">Medium</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border)">
+          <span style="width:32px;height:32px;border-radius:var(--r);display:grid;place-items:center;flex-shrink:0;background:var(--info-c)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--info)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M5 12H2M22 12h-3"></path><circle cx="12" cy="12" r="4"></circle></svg></span>
+          <span style="font-family:var(--fu);font-weight:700;font-size:14px;flex:1">3. Extreme heat efficiency loss</span>
+          <span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);background:var(--info-c);color:var(--on-info-c)">Low</span>
+        </div>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- INPUT -->
+    <sc-if value="{{ show.input }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Input</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Focus swaps the border to sky blue with a 3px ring — the standard interactive signal.</p>
+      <div style="max-width:340px;margin-bottom:16px"><label style="display:block;font-family:var(--fu);font-weight:600;font-size:13px;margin-bottom:6px">Facility name</label><input value="Miami Distribution Center" style="width:100%;font-family:var(--fb);font-size:14px;padding:9px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);color:var(--text)" style-focus="border-color:var(--info);box-shadow:0 0 0 3px color-mix(in srgb, var(--info) 30%, transparent);outline:none"></div>
+      <div style="max-width:340px;margin-bottom:16px"><label style="display:block;font-family:var(--fu);font-weight:600;font-size:13px;margin-bottom:6px">Estimated daily downtime cost (focused)</label><input value="$180,000" style="width:100%;font-family:var(--fb);font-size:14px;padding:9px 12px;background:var(--surface);border:1px solid var(--info);border-radius:var(--r);color:var(--text);box-shadow:0 0 0 3px color-mix(in srgb, var(--info) 30%, transparent);outline:none"></div>
+      <div style="max-width:340px;margin-bottom:16px"><label style="display:block;font-family:var(--fu);font-weight:600;font-size:13px;margin-bottom:6px">Annual insurance premium</label><input placeholder="e.g. $240,000" style="width:100%;font-family:var(--fb);font-size:14px;padding:9px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);color:var(--text)" style-focus="border-color:var(--info);box-shadow:0 0 0 3px color-mix(in srgb, var(--info) 30%, transparent);outline:none"><div style="font-size:12px;color:var(--muted);margin-top:5px">Optional if tracked at the asset level.</div></div>
+      <div style="max-width:340px;margin-bottom:16px"><label style="display:block;font-family:var(--fu);font-weight:600;font-size:13px;margin-bottom:6px">Latitude / longitude</label><input value="25.7, —" style="width:100%;font-family:var(--fb);font-size:14px;padding:9px 12px;background:var(--surface);border:1px solid var(--crit);border-radius:var(--r);color:var(--text)"><div style="font-size:12px;color:var(--crit-s);margin-top:5px">Longitude is required for hazard layering.</div></div>
+    </section>
+    </sc-if>
+
+    <!-- SELECT -->
+    <sc-if value="{{ show.select }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Select</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Native select styled to match inputs, plus a segmented control for two-to-four exclusive choices.</p>
+      <div style="max-width:340px;margin-bottom:24px"><label style="display:block;font-family:var(--fu);font-weight:600;font-size:13px;margin-bottom:6px">Hazard layer</label>
+        <div style="position:relative">
+          <select style="width:100%;appearance:none;font-family:var(--fb);font-size:14px;padding:9px 36px 9px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);color:var(--text);cursor:pointer" style-focus="border-color:var(--info);box-shadow:0 0 0 3px color-mix(in srgb, var(--info) 30%, transparent);outline:none">
+            <option>Coastal flooding</option><option>Riverine flooding</option><option>Extreme heat</option><option>Severe wind</option>
+          </select>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--muted)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg>
+        </div>
+      </div>
+      <h2 style="font-family:var(--fu);font-weight:700;font-size:18px;margin:0 0 16px">Segmented control</h2>
+      <div style="display:inline-flex;background:var(--surface-m);border:1px solid var(--border);border-radius:var(--r);padding:3px;gap:3px">
+        <button style="font-family:var(--fu);font-weight:600;font-size:13px;padding:6px 16px;border:none;border-radius:6px;cursor:pointer;background:var(--surface);color:var(--text);box-shadow:var(--sh-card)">5-year</button>
+        <button style="font-family:var(--fu);font-weight:600;font-size:13px;padding:6px 16px;border:none;border-radius:6px;cursor:pointer;background:transparent;color:var(--muted)" style-hover="color:var(--text)">10-year</button>
+        <button style="font-family:var(--fu);font-weight:600;font-size:13px;padding:6px 16px;border:none;border-radius:6px;cursor:pointer;background:transparent;color:var(--muted)" style-hover="color:var(--text)">30-year</button>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- TABLE -->
+    <sc-if value="{{ show.table }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Table</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Financial columns are right-aligned tabular Archivo so figures audit digit-for-digit.</p>
+      <table style="width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden">
+        <thead><tr>
+          <th style="background:var(--surface-m);font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);text-align:left;padding:11px 16px">Facility <span style="opacity:.5;font-size:10px">▾</span></th>
+          <th style="background:var(--surface-m);font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);text-align:left;padding:11px 16px">Tier</th>
+          <th style="background:var(--surface-m);font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);text-align:left;padding:11px 16px">Top risk</th>
+          <th style="background:var(--surface-m);font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);text-align:right;padding:11px 16px">Downtime cost/day <span style="opacity:.5;font-size:10px">▾</span></th>
+          <th style="background:var(--surface-m);font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);text-align:right;padding:11px 16px">5-yr avoided loss</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="font-family:var(--fb);font-size:14px;padding:12px 16px;border-top:1px solid var(--border)">Miami Distribution Center</td><td style="padding:12px 16px;border-top:1px solid var(--border)"><span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);background:var(--crit-c);color:var(--on-crit-c)">Tier 1</span></td><td style="font-family:var(--fb);font-size:14px;padding:12px 16px;border-top:1px solid var(--border)">Hurricanes</td><td style="font-family:var(--fu);font-weight:500;font-variant-numeric:tabular-nums;text-align:right;font-size:14px;padding:12px 16px;border-top:1px solid var(--border)">$180,000</td><td style="font-family:var(--fu);font-weight:700;font-variant-numeric:tabular-nums;text-align:right;font-size:14px;padding:12px 16px;border-top:1px solid var(--border);color:var(--pos)">$1,240,000</td></tr>
+          <tr style="background:var(--surface-m)"><td style="font-family:var(--fb);font-size:14px;padding:12px 16px;border-top:1px solid var(--border)">Houston Manufacturing Plant</td><td style="padding:12px 16px;border-top:1px solid var(--border)"><span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);background:var(--crit-c);color:var(--on-crit-c)">Tier 1</span></td><td style="font-family:var(--fb);font-size:14px;padding:12px 16px;border-top:1px solid var(--border)">Flooding</td><td style="font-family:var(--fu);font-weight:500;font-variant-numeric:tabular-nums;text-align:right;font-size:14px;padding:12px 16px;border-top:1px solid var(--border)">$210,000</td><td style="font-family:var(--fu);font-weight:700;font-variant-numeric:tabular-nums;text-align:right;font-size:14px;padding:12px 16px;border-top:1px solid var(--border);color:var(--pos)">$980,000</td></tr>
+          <tr><td style="font-family:var(--fb);font-size:14px;padding:12px 16px;border-top:1px solid var(--border)">Phoenix Data Center</td><td style="padding:12px 16px;border-top:1px solid var(--border)"><span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);background:var(--warn-c);color:var(--on-warn-c)">Tier 2</span></td><td style="font-family:var(--fb);font-size:14px;padding:12px 16px;border-top:1px solid var(--border)">Extreme heat</td><td style="font-family:var(--fu);font-weight:500;font-variant-numeric:tabular-nums;text-align:right;font-size:14px;padding:12px 16px;border-top:1px solid var(--border)">$95,000</td><td style="font-family:var(--fu);font-weight:700;font-variant-numeric:tabular-nums;text-align:right;font-size:14px;padding:12px 16px;border-top:1px solid var(--border);color:var(--pos)">$610,000</td></tr>
+          <tr style="background:var(--surface-m)"><td style="font-family:var(--fb);font-size:14px;padding:12px 16px;border-top:1px solid var(--border)">Denver Corporate Office</td><td style="padding:12px 16px;border-top:1px solid var(--border)"><span style="font-family:var(--fu);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-full);background:var(--info-c);color:var(--on-info-c)">Tier 3</span></td><td style="font-family:var(--fb);font-size:14px;padding:12px 16px;border-top:1px solid var(--border)">Severe storms</td><td style="font-family:var(--fu);font-weight:500;font-variant-numeric:tabular-nums;text-align:right;font-size:14px;padding:12px 16px;border-top:1px solid var(--border)">$22,000</td><td style="font-family:var(--fu);font-weight:700;font-variant-numeric:tabular-nums;text-align:right;font-size:14px;padding:12px 16px;border-top:1px solid var(--border);color:var(--pos)">$140,000</td></tr>
+        </tbody>
+      </table>
+    </section>
+    </sc-if>
+
+    <!-- TABS -->
+    <sc-if value="{{ show.tabs }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Tabs</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Underline indicator in sky blue; content swaps on click.</p>
+      <div style="display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:16px">
+        <div onClick="{{ tabRiskClick }}" style="{{ tabRiskStyle }}">Risk profile</div>
+        <div onClick="{{ tabFinClick }}" style="{{ tabFinStyle }}">Financial justification</div>
+      </div>
+      <sc-if value="{{ tabRisk }}" hint-placeholder-val="{{ true }}">
+        <div style="background:var(--surface);border:1px solid var(--border-s);border-radius:var(--r-lg);padding:24px;box-shadow:var(--sh-card);max-width:520px">
+          <p style="font-family:var(--fu);font-weight:500;font-size:14px;color:var(--muted);margin:0 0 6px">Top exposure — Miami Distribution Center</p>
+          <p style="font-family:var(--fb);font-size:14px;color:var(--muted);margin:0">Coastal inundation ranked #1, projected 5-day operational stoppage during a Category 3 storm.</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ tabFin }}" hint-placeholder-val="{{ false }}">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;box-shadow:var(--sh-card);max-width:520px">
+          <p style="font-family:var(--fu);font-weight:500;font-size:14px;color:var(--muted);margin:0 0 6px">Roof fortification — Facility Alpha</p>
+          <div style="display:flex;gap:32px;margin-top:8px">
+            <div><div style="font-family:var(--fu);font-weight:500;font-size:14px;color:var(--muted)">Est. CapEx</div><div style="font-family:var(--fu);font-weight:600;font-size:20px">$120,000</div></div>
+            <div><div style="font-family:var(--fu);font-weight:500;font-size:14px;color:var(--muted)">5-yr savings</div><div style="font-family:var(--fu);font-weight:800;font-size:20px;color:var(--pos)">$480,000</div></div>
+            <div><div style="font-family:var(--fu);font-weight:500;font-size:14px;color:var(--muted)">ROI</div><div style="font-family:var(--fu);font-weight:800;font-size:20px;color:var(--pos)">300%</div></div>
+          </div>
+        </div>
+      </sc-if>
+    </section>
+    </sc-if>
+
+    <!-- TOGGLE / CHECKBOX / RADIO -->
+    <sc-if value="{{ show.toggle }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Toggle &amp; choice</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">On-states use teal (positive), never navy — reserving structural navy for chrome. Click to try them.</p>
+      <h2 style="font-family:var(--fu);font-weight:700;font-size:18px;margin:0 0 16px">Switch</h2>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:8px">
+        <label style="display:flex;align-items:center;gap:12px;font-family:var(--fb);font-size:14px;cursor:pointer" onClick="{{ toggleSwitch }}">
+          <span style="width:40px;height:24px;border-radius:var(--r-full);flex-shrink:0;position:relative;transition:background .15s;background:{{ switchTrack }}"><span style="position:absolute;top:2px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);transition:left .15s;left:{{ switchThumb }}"></span></span>
+          Include projects pending CFO approval
+        </label>
+        <label style="display:flex;align-items:center;gap:12px;font-family:var(--fb);font-size:14px;color:var(--muted)">
+          <span style="width:40px;height:24px;border-radius:var(--r-full);flex-shrink:0;position:relative;background:var(--border)"><span style="position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3)"></span></span>
+          Auto-refresh hazard layers (off)
+        </label>
+      </div>
+      <h2 style="font-family:var(--fu);font-weight:700;font-size:18px;margin:32px 0 16px">Checkbox</h2>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <label style="display:flex;align-items:center;gap:10px;font-family:var(--fb);font-size:14px;cursor:pointer"><span style="width:18px;height:18px;border-radius:var(--r-sm);background:var(--pos);display:grid;place-items:center;flex-shrink:0"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"></path></svg></span>Coastal flooding</label>
+        <label style="display:flex;align-items:center;gap:10px;font-family:var(--fb);font-size:14px;cursor:pointer"><span style="width:18px;height:18px;border-radius:var(--r-sm);border:1.5px solid var(--border-s);flex-shrink:0"></span>Extreme heat</label>
+        <label style="display:flex;align-items:center;gap:10px;font-family:var(--fb);font-size:14px;cursor:pointer"><span style="width:18px;height:18px;border-radius:var(--r-sm);border:1.5px solid var(--border-s);flex-shrink:0"></span>Severe wind</label>
+      </div>
+      <h2 style="font-family:var(--fu);font-weight:700;font-size:18px;margin:32px 0 16px">Radio</h2>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <label style="display:flex;align-items:center;gap:10px;font-family:var(--fb);font-size:14px;cursor:pointer"><span style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--pos);display:grid;place-items:center;flex-shrink:0"><span style="width:9px;height:9px;border-radius:50%;background:var(--pos)"></span></span>Portfolio view</label>
+        <label style="display:flex;align-items:center;gap:10px;font-family:var(--fb);font-size:14px;cursor:pointer"><span style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border-s);flex-shrink:0"></span>Single facility view</label>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- ALERT -->
+    <sc-if value="{{ show.alert }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Alert</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Left rule in the semantic hue; icon + title carry meaning without relying on color.</p>
+      <div style="display:flex;gap:12px;padding:14px 16px;border-radius:var(--r);border-left:3px solid var(--crit);margin-bottom:12px;background:var(--crit-c)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--crit)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><path d="M12 3 2 20h20z"></path><path d="M12 9v5M12 17h.01"></path></svg><div><p style="font-family:var(--fu);font-weight:700;font-size:14px;margin:0 0 2px;color:var(--on-crit-c)">Critical exposure detected</p><p style="font-size:13px;margin:0;color:var(--muted)">Miami Distribution Center faces a projected $1.2M stoppage — insurance premium hike likely at renewal.</p></div></div>
+      <div style="display:flex;gap:12px;padding:14px 16px;border-radius:var(--r);border-left:3px solid var(--warn);margin-bottom:12px;background:var(--warn-c)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg><div><p style="font-family:var(--fu);font-weight:700;font-size:14px;margin:0 0 2px;color:var(--on-warn-c)">Pending financial approval</p><p style="font-size:13px;margin:0;color:var(--muted)">3 resilience projects are awaiting CFO review before funding can proceed.</p></div></div>
+      <div style="display:flex;gap:12px;padding:14px 16px;border-radius:var(--r);border-left:3px solid var(--pos);margin-bottom:12px;background:var(--pos-c)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--pos)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><path d="m5 12 5 5 9-11"></path></svg><div><p style="font-family:var(--fu);font-weight:700;font-size:14px;margin:0 0 2px;color:var(--on-pos-c)">Project funded</p><p style="font-size:13px;margin:0;color:var(--muted)">Hurricane shutter installation approved — projected 14-month payback, 300% ROI.</p></div></div>
+      <div style="display:flex;gap:12px;padding:14px 16px;border-radius:var(--r);border-left:3px solid var(--info);margin-bottom:12px;background:var(--info-c)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--info)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg><div><p style="font-family:var(--fu);font-weight:700;font-size:14px;margin:0 0 2px;color:var(--on-info-c)">Hazard data refreshed</p><p style="font-size:13px;margin:0;color:var(--muted)">Regional climate layers updated for the Gulf Coast cluster (4 facilities).</p></div></div>
+    </section>
+    </sc-if>
+
+    <!-- MODAL -->
+    <sc-if value="{{ show.modal }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Modal</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Confirmations and focused tasks. Scrim dims the app; a single primary action anchors the footer.</p>
+      <button onClick="{{ openModal }}" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);border:1px solid transparent;cursor:pointer;background:var(--primary);color:var(--on-primary);font-size:14px;padding:8px 16px" style-hover="background:var(--primary-h)">Open confirmation modal</button>
+    </section>
+    </sc-if>
+
+    <!-- DROPDOWN -->
+    <sc-if value="{{ show.dropdown }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Dropdown menu</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Action menu anchored to a trigger. Destructive items are separated and colored terracotta.</p>
+      <div style="position:relative;display:inline-block">
+        <button onClick="{{ toggleDrop }}" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);cursor:pointer;background:var(--surface);color:var(--text);border:1px solid var(--border-s);font-size:14px;padding:8px 14px;display:inline-flex;align-items:center;gap:8px" style-hover="background:var(--surface-m)">Facility actions <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button>
+        <sc-if value="{{ dropOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:calc(100% + 6px);left:0;min-width:220px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--sh-over);padding:6px;z-index:20;animation:mg-pop .14s ease-out">
+            <div style="display:flex;align-items:center;gap:10px;font-family:var(--fu);font-weight:500;font-size:14px;padding:9px 10px;border-radius:var(--r);cursor:pointer;color:var(--text)" style-hover="background:var(--surface-m)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4h10M11 12h10M11 20h10M4 5l1 1 2-2M4 13l1 1 2-2M4 21l1 1 2-2"></path></svg>View report</div>
+            <div style="display:flex;align-items:center;gap:10px;font-family:var(--fu);font-weight:500;font-size:14px;padding:9px 10px;border-radius:var(--r);cursor:pointer;color:var(--text)" style-hover="background:var(--surface-m)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg>Edit details</div>
+            <div style="display:flex;align-items:center;gap:10px;font-family:var(--fu);font-weight:500;font-size:14px;padding:9px 10px;border-radius:var(--r);cursor:pointer;color:var(--text)" style-hover="background:var(--surface-m)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>Export CSV</div>
+            <div style="height:1px;background:var(--border);margin:6px 4px"></div>
+            <div style="display:flex;align-items:center;gap:10px;font-family:var(--fu);font-weight:500;font-size:14px;padding:9px 10px;border-radius:var(--r);cursor:pointer;color:var(--crit-s)" style-hover="background:var(--crit-c)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path></svg>Delete facility</div>
+          </div>
+        </sc-if>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- TOAST -->
+    <sc-if value="{{ show.toast }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Toast</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Transient feedback, top-right, auto-dismiss after ~4s. Trigger one of each semantic type.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <button onClick="{{ toastPos }}" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);cursor:pointer;background:var(--surface);color:var(--text);border:1px solid var(--border-s);font-size:14px;padding:8px 16px" style-hover="background:var(--surface-m)">Positive</button>
+        <button onClick="{{ toastInfo }}" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);cursor:pointer;background:var(--surface);color:var(--text);border:1px solid var(--border-s);font-size:14px;padding:8px 16px" style-hover="background:var(--surface-m)">Info</button>
+        <button onClick="{{ toastWarn }}" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);cursor:pointer;background:var(--surface);color:var(--text);border:1px solid var(--border-s);font-size:14px;padding:8px 16px" style-hover="background:var(--surface-m)">Warning</button>
+        <button onClick="{{ toastCrit }}" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);cursor:pointer;background:var(--surface);color:var(--text);border:1px solid var(--border-s);font-size:14px;padding:8px 16px" style-hover="background:var(--surface-m)">Critical</button>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- TOOLTIP -->
+    <sc-if value="{{ show.tooltip }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Tooltip</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Navy surface, 12px caption. Hover the term to reveal its definition.</p>
+      <div style="display:flex;gap:40px;align-items:center;flex-wrap:wrap">
+        <span style="position:relative;font-family:var(--fb);font-size:15px;border-bottom:1.5px dotted var(--muted);cursor:help;color:var(--text)" class="mg-tip">Avoided loss
+          <span style="position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-family:var(--fu);font-size:12px;font-weight:500;line-height:16px;padding:8px 10px;border-radius:var(--r);width:200px;box-shadow:var(--sh-over);pointer-events:none">Modeled damages prevented by a resilience project over its useful life.</span>
+        </span>
+        <button style="position:relative;font-family:var(--fu);font-weight:600;border-radius:var(--r);cursor:pointer;background:var(--surface);color:var(--text);border:1px solid var(--border-s);font-size:14px;padding:8px 14px;display:inline-flex;align-items:center;gap:8px" class="mg-tip">Downtime cost
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="var(--muted)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>
+          <span style="position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-family:var(--fu);font-size:12px;font-weight:500;line-height:16px;padding:8px 10px;border-radius:var(--r);width:220px;box-shadow:var(--sh-over);pointer-events:none">Revenue lost per day a facility is non-operational during a hazard event.</span>
+        </button>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- PROGRESS -->
+    <sc-if value="{{ show.progress }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1000px;animation:mg-fade .18s ease-out">
+      <h1 style="font-family:var(--fu);font-weight:800;font-size:30px;line-height:36px;margin:0 0 4px;letter-spacing:-0.03em">Progress &amp; meter</h1>
+      <p style="color:var(--muted);font-size:15px;margin:0 0 32px">Linear bars for completion; segmented meter for a scored exposure reading.</p>
+      <div style="max-width:420px;margin-bottom:24px">
+        <div style="display:flex;justify-content:space-between;font-family:var(--fu);font-size:13px;margin-bottom:6px"><span style="color:var(--muted)">Portfolio assessment</span><span style="font-weight:600">72%</span></div>
+        <div style="height:8px;background:var(--surface-m);border-radius:var(--r-full);overflow:hidden"><div style="height:100%;width:72%;background:var(--pos);border-radius:var(--r-full)"></div></div>
+      </div>
+      <div style="max-width:420px;margin-bottom:32px">
+        <div style="display:flex;justify-content:space-between;font-family:var(--fu);font-size:13px;margin-bottom:6px"><span style="color:var(--muted)">Data completeness</span><span style="font-weight:600">40%</span></div>
+        <div style="height:8px;background:var(--surface-m);border-radius:var(--r-full);overflow:hidden"><div style="height:100%;width:40%;background:var(--warn);border-radius:var(--r-full)"></div></div>
+      </div>
+      <h2 style="font-family:var(--fu);font-weight:700;font-size:18px;margin:0 0 16px">Exposure meter</h2>
+      <div style="max-width:420px">
+        <div style="display:flex;gap:4px;margin-bottom:8px">
+          <div style="flex:1;height:10px;border-radius:var(--r-full);background:var(--pos)"></div>
+          <div style="flex:1;height:10px;border-radius:var(--r-full);background:var(--warn)"></div>
+          <div style="flex:1;height:10px;border-radius:var(--r-full);background:var(--crit)"></div>
+          <div style="flex:1;height:10px;border-radius:var(--r-full);background:var(--border)"></div>
+        </div>
+        <div style="font-family:var(--fu);font-size:13px;color:var(--muted)">Miami Distribution Center — <b style="color:var(--crit-s)">High exposure (3 of 4)</b></div>
+      </div>
+    </section>
+    </sc-if>
+
+  </main>
+
+  <!-- MODAL OVERLAY -->
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;background:rgba(13,27,42,0.55);display:grid;place-items:center;z-index:50;padding:24px">
+      <div onClick="{{ stop }}" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);box-shadow:var(--sh-over);width:100%;max-width:440px;overflow:hidden;animation:mg-pop .16s ease-out">
+        <div style="padding:24px 24px 8px">
+          <div style="display:flex;align-items:flex-start;gap:14px">
+            <span style="width:40px;height:40px;border-radius:var(--r);flex-shrink:0;display:grid;place-items:center;background:var(--crit-c)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--crit)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path></svg></span>
+            <div>
+              <h3 style="font-family:var(--fu);font-weight:700;font-size:18px;margin:0 0 6px;letter-spacing:-0.01em">Delete Miami Distribution Center?</h3>
+              <p style="font-family:var(--fb);font-size:14px;line-height:20px;color:var(--muted);margin:0">This removes the facility and its 5-year avoided-loss projection of <b style="color:var(--text)">$1,240,000</b>. This action cannot be undone.</p>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:12px;padding:20px 24px;margin-top:8px">
+          <button onClick="{{ closeModal }}" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);cursor:pointer;background:var(--surface);color:var(--text);border:1px solid var(--border-s);font-size:14px;padding:8px 16px" style-hover="background:var(--surface-m)">Cancel</button>
+          <button onClick="{{ closeModal }}" style="font-family:var(--fu);font-weight:600;border-radius:var(--r);border:1px solid transparent;cursor:pointer;background:var(--crit);color:#fff;font-size:14px;padding:8px 16px;display:inline-flex;align-items:center;gap:6px"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path></svg>Delete facility</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- TOAST STACK -->
+  <div style="position:fixed;top:68px;right:24px;display:flex;flex-direction:column;gap:10px;z-index:60;pointer-events:none">
+    <sc-for list="{{ toasts }}" as="t" hint-placeholder-count="0">
+      <div style="display:flex;gap:10px;align-items:flex-start;min-width:280px;max-width:340px;background:var(--surface);border:1px solid var(--border);border-left:3px solid {{ t.accent }};border-radius:var(--r);box-shadow:var(--sh-over);padding:12px 14px;animation:mg-slide .18s ease-out;pointer-events:auto">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="{{ t.accent }}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><path d="{{ t.icon }}"></path></svg>
+        <div style="flex:1"><p style="font-family:var(--fu);font-weight:700;font-size:13px;margin:0 0 2px;color:{{ t.on }}">{{ t.title }}</p><p style="font-family:var(--fb);font-size:13px;line-height:18px;margin:0;color:var(--muted)">{{ t.body }}</p></div>
+        <button onClick="{{ t.dismiss }}" style="background:none;border:none;cursor:pointer;color:var(--muted);padding:0;line-height:0;flex-shrink:0" style-hover="color:var(--text)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+      </div>
+    </sc-for>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:760},&quot;defaultTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;'dark' | 'light'&quot;,&quot;section&quot;:&quot;Appearance&quot;}}">
+class Component extends DCLogic {
+  state = {
+    theme: this.props.defaultTheme || 'dark',
+    sec: 'colors',
+    tab: 'risk',
+    modalOpen: false,
+    dropOpen: false,
+    switchOn: true,
+    toasts: [],
+  };
+
+  _tid = 0;
+
+  showToast(kind) {
+    const map = {
+      positive: { accent: 'var(--pos)', on: 'var(--on-pos-c)', icon: 'm5 12 5 5 9-11', title: 'Project funded', body: 'Hurricane shutters approved — 300% projected ROI.' },
+      info:     { accent: 'var(--info)', on: 'var(--on-info-c)', icon: 'M12 11v5M12 8h.01', title: 'Hazard data refreshed', body: 'Gulf Coast climate layers updated (4 facilities).' },
+      warning:  { accent: 'var(--warn)', on: 'var(--on-warn-c)', icon: 'M12 8v5M12 16h.01', title: 'Approval pending', body: '3 projects awaiting CFO review before funding.' },
+      critical: { accent: 'var(--crit)', on: 'var(--on-crit-c)', icon: 'M12 9v5M12 17h.01', title: 'Critical exposure', body: 'Miami DC faces a projected $1.2M stoppage.' },
+    };
+    const id = ++this._tid;
+    const t = { id, dismiss: () => this.dismissToast(id), ...map[kind] };
+    this.setState(s => ({ toasts: [...s.toasts, t] }));
+    setTimeout(() => this.dismissToast(id), 4200);
+  }
+
+  dismissToast(id) {
+    this.setState(s => ({ toasts: s.toasts.filter(t => t.id !== id) }));
+  }
+
+  renderVals() {
+    const sec = this.state.sec;
+    const labels = {
+      colors: 'Colors', typography: 'Typography', spacing: 'Spacing', radius: 'Radius', icons: 'Icons',
+      button: 'Button', badge: 'Badge', card: 'Card', input: 'Input', select: 'Select', table: 'Table',
+      tabs: 'Tabs', toggle: 'Toggle & choice', alert: 'Alert',
+      modal: 'Modal', dropdown: 'Dropdown menu', toast: 'Toast', tooltip: 'Tooltip', progress: 'Progress & meter',
+    };
+    const dots = {
+      colors: 'var(--pos)', typography: 'var(--info)', spacing: 'var(--warn)', radius: 'var(--crit)', icons: 'var(--pos)',
+      button: 'var(--pos)', badge: 'var(--warn)', card: 'var(--info)', input: 'var(--pos)', select: 'var(--warn)', table: 'var(--info)',
+      tabs: 'var(--warn)', toggle: 'var(--pos)', alert: 'var(--crit)',
+      modal: 'var(--info)', dropdown: 'var(--warn)', toast: 'var(--pos)', tooltip: 'var(--info)', progress: 'var(--crit)',
+    };
+    const groups = [
+      { title: 'Branding', items: ['colors', 'typography', 'spacing', 'radius', 'icons'] },
+      { title: 'Components', items: ['button', 'badge', 'card', 'input', 'select', 'table', 'tabs', 'toggle', 'alert'] },
+      { title: 'Overlays & feedback', items: ['modal', 'dropdown', 'toast', 'tooltip', 'progress'] },
+    ];
+    const linkBase = 'display:flex;align-items:center;gap:10px;font-family:var(--fu);font-size:14px;font-weight:500;text-decoration:none;padding:9px 8px;border-radius:var(--r);cursor:pointer;';
+    const nav = groups.map(g => ({
+      title: g.title,
+      items: g.items.map(s => ({
+        label: labels[s], dot: dots[s],
+        onClick: () => this.setState({ sec: s, dropOpen: false }),
+        style: linkBase + (s === sec ? 'background:var(--pos);color:#fff;' : 'color:#cfd6de;'),
+      })),
+    }));
+
+    const show = {};
+    Object.keys(labels).forEach(k => { show[k] = k === sec; });
+
+    const tabBase = 'font-family:var(--fu);font-weight:600;font-size:14px;padding:10px 16px;cursor:pointer;border-bottom:2px solid transparent;';
+    const tabOn = 'color:var(--text);border-bottom-color:var(--info);';
+    const tabOff = 'color:var(--muted);';
+
+    const icons = [
+      { name: 'shield', d: 'M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z' },
+      { name: 'flood', d: 'M2 16c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2M2 21c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2M6 12l-1-6 6 2 2-5 3 4 5-1' },
+      { name: 'hurricane', d: 'M3 8h11a3 3 0 1 0-3-3M3 14h15a3 3 0 1 1-3 3M3 11h9' },
+      { name: 'heat', d: 'M12 3v3M12 18v3M5 12H2M22 12h-3M6 6l2 2M18 6l-2 2' },
+      { name: 'building', d: 'M4 21V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v17M15 9h4a1 1 0 0 1 1 1v11M8 7h3M8 11h3M8 15h3' },
+      { name: 'trending', d: 'M3 17l6-6 4 4 7-7M14 8h6v6' },
+      { name: 'dollar', d: 'M12 2v20M17 6.5C17 4.6 14.8 3 12 3S7 4.6 7 6.5 9.2 10 12 10s5 1.6 5 3.5S14.8 17 12 17s-5-1.6-5-3.5' },
+      { name: 'alert', d: 'M12 3 2 20h20zM12 9v5M12 17h.01' },
+      { name: 'map-pin', d: 'M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0zM12 10a2 2 0 1 0 0-.01' },
+      { name: 'layers', d: 'M12 2 2 7l10 5 10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
+      { name: 'calendar', d: 'M3 5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zM3 9h18M8 2v4M16 2v4' },
+      { name: 'check-circle', d: 'M22 12a10 10 0 1 1-5-8.7M9 12l2 2 6-6' },
+    ];
+
+    return {
+      theme: this.state.theme,
+      themeLabel: this.state.theme === 'dark' ? 'Dark' : 'Light',
+      themeIcon: this.state.theme === 'dark'
+        ? 'M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.5 1.5M18 18l-1.5-1.5M6 18l1.5-1.5M18 6l-1.5 1.5M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z'
+        : 'M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z',
+      toggleTheme: () => this.setState(s => ({ theme: s.theme === 'dark' ? 'light' : 'dark' })),
+      activeLabel: labels[sec],
+      nav, show,
+      tabRisk: this.state.tab === 'risk',
+      tabFin: this.state.tab === 'finance',
+      tabRiskStyle: tabBase + (this.state.tab === 'risk' ? tabOn : tabOff),
+      tabFinStyle: tabBase + (this.state.tab === 'finance' ? tabOn : tabOff),
+      tabRiskClick: () => this.setState({ tab: 'risk' }),
+      tabFinClick: () => this.setState({ tab: 'finance' }),
+      icons,
+      switchTrack: this.state.switchOn ? 'var(--pos)' : 'var(--border)',
+      switchThumb: this.state.switchOn ? '18px' : '2px',
+      toggleSwitch: () => this.setState(s => ({ switchOn: !s.switchOn })),
+      openModal: () => this.setState({ modalOpen: true }),
+      closeModal: () => this.setState({ modalOpen: false }),
+      modalOpen: this.state.modalOpen,
+      stop: (e) => e.stopPropagation(),
+      toggleDrop: () => this.setState(s => ({ dropOpen: !s.dropOpen })),
+      dropOpen: this.state.dropOpen,
+      toasts: this.state.toasts,
+      toastPos: () => this.showToast('positive'),
+      toastInfo: () => this.showToast('info'),
+      toastWarn: () => this.showToast('warning'),
+      toastCrit: () => this.showToast('critical'),
+    };
+  }
+}
+</script>
+</body>
+</html>
